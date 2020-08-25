@@ -10,6 +10,32 @@ ALLOWED_HOSTS = []
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# mysql
+DATABASES =  {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'empleado',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    }
+}
+# postgresql
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'empleado',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+"""
+
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -17,6 +43,7 @@ DATABASES = {
         'NAME': BASE_DIR.child('db.sqlite3')
     }
 }
+"""
 
 
 # Static files (CSS, JavaScript, Images)

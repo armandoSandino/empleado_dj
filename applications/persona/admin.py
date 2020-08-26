@@ -7,6 +7,7 @@ admin.site.register(Habilidades)
 class EmpleadoAdmin(admin.ModelAdmin):
     # lista de campos a mostrar en el administrador
     list_display = (
+        'id',
         'first_name',
         'last_name',
         'job',

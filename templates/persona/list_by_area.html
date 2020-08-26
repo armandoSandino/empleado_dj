@@ -1,0 +1,10 @@
+<h2> Listar todos los empleados por departamento </h2>
+{{object_list}}
+
+<ul>
+    {% for item in object_list %}
+    <li>
+        {{item}}
+    </li>
+    {% endfor %}
+</ul>

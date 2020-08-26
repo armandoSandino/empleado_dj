@@ -18,9 +18,12 @@ class  ListByAreaEmpleado(ListView):
         departamento__short_name ='AC'
     )
     """
-    
+
     def get_queryset(self):
+        # mediante 'self.kwargs['parametro']' podemos recibir parametros pasados por url a una ruta
+        term = self.kwargs['termino']
+
         lista = Empleado.objects.filter(
-            departamento__short_name='AC'
+            departamento__short_name=term
         )
         return  lista

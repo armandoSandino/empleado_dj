@@ -9,7 +9,7 @@ class ListAllEmplados(ListView):
     paginate_by = 5
     # Ordenar resultados
     ordering = 'first_name'
-    
+
     model = Empleado
     # puede acceder a los datos del modelo mediante 'context_object_name' o 'object_list'
     # context_object_name = 'data'
@@ -41,9 +41,44 @@ class ListarEmpleadoByKword(ListView):
     context_object_name = 'me_data'
 
     def get_queryset(self):
-        # obtener valores pasados en un form mediante 'request'
+        # obtener valores pasados en un form asegurado con 'csrf_token'
         palabra_clave = self.request.GET.get('termino','')
         
         return Empleado.objects.filter(
             first_name = palabra_clave
         )
+
+class ListarEmpleadoByWorks(ListView):
+    """ Listar Empleado por ocupacion/trabajo """
+
+    # Declarar plantilla
+    template_name = 'persona/filter_by_works.html'
+    # Añadir paginacion
+    paginate_by= 5
+    # Añadir ordenamiento
+    ordering = 'first_name'
+
+    def get_queryset(self):
+        # Obtenemos el parametro pasado por URL
+        trabajo = self.kwargs['your_work']
+
+        return  Empleado.objects.filter(
+            job=trabajo
+        )
+
+class ListarHabilidadesEmpleados(ListView):
+    """ Listar habilidades de un empleado """
+
+    template_name = 'persona/habilidades.html'
+    context_object_name = 'dataEmpleado'
+
+    def get_queryset(self):
+        try:
+            # Obtener parametro
+            id_empleado =  self.kwargs['key']
+            # Obtener el empleado
+            empleado = Empleado.objects.get(id=id_empleado)
+            # Retornar sus habilidades, es una relacion Many to Many
+            return empleado.habilidades.all()
+        except ValueError:
+            return []

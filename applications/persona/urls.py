@@ -1,9 +1,7 @@
 from django.contrib import admin
 from django.urls import path
-
-def message(self):
-    print('== llamada a la ruta de persona ==')
+from . import views
 
 urlpatterns = [
-    path('persona', message)
+    path('listar-todo-empleados/', views.ListAllEmplados.as_view() )
 ]

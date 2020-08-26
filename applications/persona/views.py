@@ -27,3 +27,18 @@ class  ListByAreaEmpleado(ListView):
             departamento__short_name=term
         )
         return  lista
+
+
+class ListarEmpleadoByKword(ListView):
+    """  Listar empleado por palabra clave """
+
+    template_name = 'persona/by_kword.html'
+    context_object_name = 'me_data'
+
+    def get_queryset(self):
+        # obtener valores pasados en un form mediante 'request'
+        palabra_clave = self.request.GET.get('termino','')
+        
+        return Empleado.objects.filter(
+            first_name = palabra_clave
+        )

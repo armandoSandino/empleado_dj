@@ -5,6 +5,11 @@ from .models import Empleado
 
 class ListAllEmplados(ListView):
     template_name =  'persona/list_all.html'
+    # Agregar paginacion
+    paginate_by = 5
+    # Ordenar resultados
+    ordering = 'first_name'
+    
     model = Empleado
     # puede acceder a los datos del modelo mediante 'context_object_name' o 'object_list'
     # context_object_name = 'data'

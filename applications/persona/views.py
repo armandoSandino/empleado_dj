@@ -13,6 +13,14 @@ class  ListByAreaEmpleado(ListView):
     """ Listar todos los empleados de un area de la empresa """
     template_name = 'persona/list_all.html' 
     # filtrar empleado por departamento
+    """
     queryset = Empleado.objects.filter(
         departamento__short_name ='AC'
-    ) 
+    )
+    """
+    
+    def get_queryset(self):
+        lista = Empleado.objects.filter(
+            departamento__short_name='AC'
+        )
+        return  lista

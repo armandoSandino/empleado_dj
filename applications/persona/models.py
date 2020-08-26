@@ -28,6 +28,7 @@ class Empleado(models.Model):
     job = models.CharField('Trabajo', max_length=50, choices=JOB_CHOICES)
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
     avatar = models.ImageField( upload_to='empleado', blank=True, null=True)
+    habilidades = models.ManyToManyField(Habilidades)
 
     class Meta:
         verbose_name = 'Mi Empleado'

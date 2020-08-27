@@ -160,9 +160,28 @@ class EmpleadoUpdateView(UpdateView):
     fields = ['first_name','last_name','job', 'departamento', 'habilidades']
     # Definir url de redireccion 
     success_url = reverse_lazy('persona_app:success-employe')
-    
+
     # Definir variables extras a pasar al template
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title_page'] = 'Actualizar empleado'
         return context
+
+    # Realizar algun proceso previo al guardado de datos o validaciones de datos
+    # Tanto el 'post' como el 'form_valid' pueden realizar la misma tarea si ese es el caso.
+    # Primeramente cuando se realiza el request a la ruta que implementa el UpdateView se ejeucta el 'post' antes del 'form_valid'    
+    def form_valid(self, form):
+        # Obtener valores
+        employee = form.save(commit=False)
+        # Actualiza determinados campos explicitamente
+        full = [employee.first_name,' ', employee.last_name]
+        employee.full_name = ''.join(full)
+        # Guarda los cambios
+        employee.save()
+        return super(EmpleadoUpdateView, self).form_valid(form)
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        # Obtener los valores del form desde el request
+        # print(request.POST), print(request.POST['first_name'])
+        return super().post(request, *args, **kwargs)

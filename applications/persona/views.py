@@ -6,7 +6,8 @@ from  django.views.generic import (
     ListView,
     DetailView,
     CreateView,
-    TemplateView
+    TemplateView,
+    UpdateView
 )
 # models
 from .models import Empleado
@@ -148,3 +149,20 @@ class EmpleadoCreateView(CreateView):
 
         return super(EmpleadoCreateView, self).form_valid(form)
 
+
+class EmpleadoUpdateView(UpdateView):
+
+    # Definir plantilla
+    template_name = 'persona/update_employee.html'
+    # Definir Modelo
+    model = Empleado
+    # Definir campos a trabajar
+    fields = ['first_name','last_name','job', 'departamento', 'habilidades']
+    # Definir url de redireccion 
+    success_url = reverse_lazy('persona_app:success-employe')
+    
+    # Definir variables extras a pasar al template
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title_page'] = 'Actualizar empleado'
+        return context

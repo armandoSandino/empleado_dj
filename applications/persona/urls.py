@@ -19,5 +19,7 @@ urlpatterns = [
     # Implementando CreateView
     path('agregar-empleado/', views.EmpleadoCreateView.as_view() ),
     # Ruta para mostrar mensaje de usuario agregado
-    path('success-add-employe/', views.SuccessViewEmpleadoCreateView.as_view(), name='success-employe')
+    path('success-add-employe/', views.SuccessViewEmpleadoCreateView.as_view(), name='success-employe'),
+    # Implementando UpdateView, el pk es importante aqui
+    path('actualizar-empleado/<pk>/', views.EmpleadoUpdateView.as_view(), name='update-employe')
 ]

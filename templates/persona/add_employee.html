@@ -1,0 +1,12 @@
+<h2>{{title}}</h2>
+<!-- 'form' es una varible que se creo internamnete para trabajar con nuestro CreateView.
+ Definira un formulario para trabajar con los campos definidos en el 'fields' de la vista. 
+csrf_token proporciona seguridad al formulario -->
+
+<style></style>
+<form method="POST" name="formAddEmployee"> 
+{% csrf_token %}
+{{ form.as_p}}
+
+<button type="submit"> Registrar </button>
+</form> 

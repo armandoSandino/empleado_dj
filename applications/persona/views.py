@@ -1,7 +1,12 @@
 from django.shortcuts import render
+# Nos permite invocar rutas
+from django.urls import reverse_lazy
+
 from  django.views.generic import (
     ListView,
-    DetailView
+    DetailView,
+    CreateView,
+    TemplateView
 )
 # models
 from .models import Empleado
@@ -86,6 +91,8 @@ class ListarHabilidadesEmpleados(ListView):
         except ValueError:
             return []
 
+
+
 class EmpleadoDetailView(DetailView):
     # En DetailView indicar el modelo a trabajar obligatoriamente
     model = Empleado
@@ -100,4 +107,32 @@ class EmpleadoDetailView(DetailView):
         # context =  super().get_context_data(**kwargs)
         context['title'] = 'Detalle del empleado '
         return context
+
+class SuccessViewEmpleadoCreateView(TemplateView):
+    # Definir template
+    template_name = 'persona/success_add_employee.html'
+
+class EmpleadoCreateView(CreateView):
+
+    # Definir template
+    template_name = 'persona/add_employee.html'
+    # Definir el modelo a utilizar es obligatorio
+    model = Empleado
+    # Definir campos de nuestro modelo que queremos trabajar
+    # Pude indicar que se trabaje con todos los campos del modelo, asi
+    # fields = (__all__)
+    # Pude indicar determinados compos del modelo con los que trabajar
+    # fields = ['first_name','last_name','job']
+    fields = ('__all__')
+
+    # Definir la ruta de rediccion cuando el registro se agrego correctamente, con '.' se cargara la misma pagina
+    # success_url = '/success-add-employe'
+    success_url = reverse_lazy('persona_app:success-employe')
+
+    # Definir variables extras a pasar al template
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Agregar empleado'
+        return context
+
 

@@ -1,0 +1,8 @@
+<h2>{{title_delete}}</h2>
+<!-- csrf_token proporciona seguridad al formulario -->
+
+<form method="POST" action="" name="confirmDeleteEmployee" autocomplete="off">
+    {% csrf_token %}
+    <p> ¿Esta seguro que desea borrar el empleado?</p>
+    <button type="submit">Confirmar </button>
+</form>

@@ -7,10 +7,12 @@ from  django.views.generic import (
     DetailView,
     CreateView,
     TemplateView,
-    UpdateView
+    UpdateView,
+    DeleteView
 )
 # models
 from .models import Empleado
+from django.http import HttpResponseRedirect
 
 class ListAllEmplados(ListView):
     template_name =  'persona/list_all.html'
@@ -185,3 +187,30 @@ class EmpleadoUpdateView(UpdateView):
         # Obtener los valores del form desde el request
         # print(request.POST), print(request.POST['first_name'])
         return super().post(request, *args, **kwargs)
+
+class EmpleadoDeteleView(DeleteView):
+
+    # Definir template
+    template_name = 'persona/delete_employee.html'
+    # Definir modelo
+    model = Empleado
+    # Definir ruta de redireccionamiento
+    # success_url = reverse_lazy('persona_app:success-employe')
+
+    # Definir variables extras a pasar al template
+    def get_context_data(self, **kwargs):
+        context =  super(EmpleadoDeteleView, self).get_context_data(**kwargs)
+        context['title_delete'] = 'Borrar empleado'
+        return context
+
+    def delete(self,request,*args,**kwargs):
+        # Obtener el registro a borrar
+        self.object = self.get_object()
+        # success_url = self.get_success_url()
+        # Ruta de redireccionamiento
+        success_url = reverse_lazy('persona_app:success-employe')
+        # Borrar el registro
+        self.object.delete()
+        return HttpResponseRedirect(success_url)
+
+    

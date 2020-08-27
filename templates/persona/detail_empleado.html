@@ -21,11 +21,23 @@
     transition: all 1s;
     
 }
+.title {
+    font-size: 18px;
+    color: black;
+}
 </style>
 <div class="card">
- <p> {{empleado.first_name}} </p> 
- <p>{{object.last_name}}</p>
 
- <p> {{object.departamento}}</p> 
- <p> {{empleado.habilidades}}</p>
+    <p class="title">Nombre</p>
+<p> {{empleado.first_name}} </p> 
+
+<p class="title">Apellido</p>
+<p>{{object.last_name}}</p>
+
+<p class="title">Departamento</p>
+<p> {{object.departamento}}</p> 
+
+<p class="title">Habilidades</p>
+<p> {{empleado.habilidades}}</p>
+
 </div>

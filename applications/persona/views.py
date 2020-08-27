@@ -1,5 +1,8 @@
 from django.shortcuts import render
-from  django.views.generic import ListView
+from  django.views.generic import (
+    ListView,
+    DetailView
+)
 # models
 from .models import Empleado
 
@@ -82,3 +85,19 @@ class ListarHabilidadesEmpleados(ListView):
             return empleado.habilidades.all()
         except ValueError:
             return []
+
+class EmpleadoDetailView(DetailView):
+    # En DetailView indicar el modelo a trabajar obligatoriamente
+    model = Empleado
+    # Declarar plantilla
+    template_name =  'persona/detail_empleado.html'
+
+    # Nos permite enviar variables extras al template, campos que no estan en nuestro modelo
+    def get_context_data(self, **kwargs):
+        
+        context = super(EmpleadoDetailView, self ).get_context_data(**kwargs)
+        # or this
+        # context =  super().get_context_data(**kwargs)
+        context['title'] = 'Detalle del empleado '
+        return context
+

@@ -9,5 +9,8 @@ urlpatterns = [
     path('listar-habilidad-empleado/<key>/', views.ListarHabilidadesEmpleados.as_view()),
     # Esta ruta es equivalente a la posterior
     # path('lista-by-area/<termino>/', views.ListByAreaEmpleado.as_view())
-    path('lista-by-area/<str:termino>/', views.ListByAreaEmpleado.as_view())
+    path('lista-by-area/<str:termino>/', views.ListByAreaEmpleado.as_view()),
+    
+    # Implementando DetailView el 'pk' es importante aqui
+    path('ver-empleado/<pk>/', views.EmpleadoDetailView.as_view() )
 ]

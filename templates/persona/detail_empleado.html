@@ -1,0 +1,31 @@
+<!-- title es una varible que definimos en la vista mediante get_context_data -->
+<h2> {{title}} </h2>
+<!-- Con 'object' puedo mostrar el registro 
+    que internamente recupero  mi DetailView.
+    {{object}}
+    Podemos acceder tambien especificando en nombre del Modelo con su primer caracter el miniscula
+    ej. Mi modelo es Empleado entonces seria empleado 
+    {{empleado}}
+-->
+<style>
+.card {
+    padding: 1em;
+    margin-top: 10px;
+    border-radius: 10px 10px;
+    border: 1px solid black;
+    background: green;
+    box-shadow: inherit 30px 30px;
+    color: white;
+    font-size: 16px;
+    font-style: italic;
+    transition: all 1s;
+    
+}
+</style>
+<div class="card">
+ <p> {{empleado.first_name}} </p> 
+ <p>{{object.last_name}}</p>
+
+ <p> {{object.departamento}}</p> 
+ <p> {{empleado.habilidades}}</p>
+</div>

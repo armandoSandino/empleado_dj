@@ -2,9 +2,12 @@ from django.shortcuts import render
 # imports models
 from .models import Prueba
 #
+from django.urls import reverse_lazy
 from django.views.generic import (
     TemplateView, ListView, CreateView
 )
+# Forms
+from .forms import PruebaForm
 
 # vistas basadas en clases, nos permiten utilizar vistas genericas como
 """
@@ -27,7 +30,11 @@ class ListarPrueba(ListView):
     model  =  Prueba
     context_object_name = 'lista'
 
-class CreateViewPrueba(CreateView):
+class PruebaCreateView(CreateView):
     template_name = 'home/agregar.html'
     model = Prueba
-    fields = ['titulo', 'subtitulo', 'cantidad']
+    # fields = ['titulo', 'subtitulo', 'cantidad']
+    # Definir el formulario para el modelo
+    form_class = PruebaForm
+    # Definir redireccionamiento
+    success_url = reverse_lazy('/')

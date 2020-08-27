@@ -122,8 +122,8 @@ class EmpleadoCreateView(CreateView):
     # Pude indicar que se trabaje con todos los campos del modelo, asi
     # fields = (__all__)
     # Pude indicar determinados compos del modelo con los que trabajar
-    # fields = ['first_name','last_name','job']
-    fields = ('__all__')
+    fields = ['first_name','last_name','job', 'departamento', 'habilidades']
+    # fields = ('__all__')
 
     # Definir la ruta de rediccion cuando el registro se agrego correctamente, con '.' se cargara la misma pagina
     # success_url = '/success-add-employe'
@@ -135,4 +135,16 @@ class EmpleadoCreateView(CreateView):
         context['title'] = 'Agregar empleado'
         return context
 
+    # validar datos a procesar para el modelo
+    def form_valid(self, form):
+        
+        # Obtener los valores de los campos en el formulario
+        # empleado = form.save()
+        empleado = form.save(commit=False)
+        # Actualizando el campo full_name
+        empleado.full_name = empleado.first_name + ' ' + empleado.last_name
+        # Guadar los cambios
+        empleado.save()
+
+        return super(EmpleadoCreateView, self).form_valid(form)
 

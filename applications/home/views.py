@@ -38,3 +38,6 @@ class PruebaCreateView(CreateView):
     form_class = PruebaForm
     # Definir redireccionamiento
     success_url = reverse_lazy('/')
+
+class ResumeFoundationTemplateView(TemplateView):
+    template_name = 'home/resume_foundation.html'

@@ -1,10 +1,73 @@
-<h2> Todos los empleados</h2>
+{% extends 'includes/base.html' %}
 
-<ul>
-    {% for e in object_list %}
-    <li>
-        {{ e }}
-    </li>
-    {% endfor %}
+{% block content %}
+{% include 'includes/header.html' %}
 
-</ul>
+<div class="grid-container"> 
+    <div class="grid-x">
+        <div class="cell">
+            <h2> Todos los empleados</h2>
+        </div>
+        <form class="cell grid-x grid-margin-x" method="GET" action="" id="formSearch" name="formSearch">
+            {% csrf_token %}
+            <div class="cell large-7">
+                <input type="text" class="" name="termino" id="termino" placeholder="Ingrese el termino" >
+            </div>
+            <div class="cell large-2">
+                <button type="submit" class="button success" title="buscar empleado">
+                    Buscar
+                </button >
+            </div>
+        </form>
+
+        <div class="cell">
+            <!--table -->
+            <div class="table-scroll">
+            <table >
+                <thead>
+                  <tr>
+                    <th width="200">ID</th>
+                    <th>First name</th>
+                    <th width="150">Last name</th>
+                    <th width="150">Full name</th>
+                    <th> Job </th>
+                    <th> Department </th>
+                    <th> Action </th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for item in object_list %}
+                    <tr>
+                        <td> {{item.id}}</td>
+                        <td>{{item.first_name}}</td>
+                        <td>{{item.last_name}}</td>
+                        <td>{{item.full_name}}</td>
+                        <td>{{item.job}}</td>
+                        <td>{{item.departamento}}</td>
+                        <td>
+                            <div class="grid-x grid-margin-x">
+                                <div class="cell auto">
+                                    <a class="button success" href="{% url 'persona_app:detail-employe' item.id %}">Ver</a>
+                                </div>
+                                <div class="cell auto">
+                                    <a class="button primary" href="#">Editar</a>
+                                </div>
+                                <div class="cell auto">
+                                    <a class="button primary" href="#"> Borrar</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+              </table >
+              </div>
+              <!-- end table -->
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

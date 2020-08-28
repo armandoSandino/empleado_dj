@@ -14,16 +14,27 @@ from  django.views.generic import (
 from .models import Empleado
 from django.http import HttpResponseRedirect
 
+class InitView(TemplateView):
+    """ Pagina de inicio """
+    template_name = 'index.html'
+
 class ListAllEmplados(ListView):
     template_name =  'persona/list_all.html'
     # Agregar paginacion
     paginate_by = 5
     # Ordenar resultados
     ordering = 'first_name'
-
-    model = Empleado
+    # Definir el modelo
+    # model = Empleado
     # puede acceder a los datos del modelo mediante 'context_object_name' o 'object_list'
     # context_object_name = 'data'
+    def get_queryset(self):
+        # obtener valores pasados en un form asegurado con 'csrf_token'
+        palabra_clave = self.request.GET.get('termino','')
+        # __icontains busca la existencia de una cadena en otra, como funcionaria un 'like'
+        return Empleado.objects.filter(
+            full_name__icontains = palabra_clave
+        )
     
 class  ListByAreaEmpleado(ListView):
     """ Listar todos los empleados de un area de la empresa """

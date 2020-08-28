@@ -21,11 +21,16 @@ class InitView(TemplateView):
 class ListAllEmplados(ListView):
     template_name =  'persona/list_all.html'
     # Agregar paginacion
+    # cuando se agrega paginacion genera implicitamente un objeto 'page_obj' y un 'paginator'
     paginate_by = 5
     # Ordenar resultados
     ordering = 'first_name'
     # Definir el modelo
     # model = Empleado
+
+    # Definir variable que nos servira para acceder a la lista de empleados resultante
+    context_object_name = 'listaEmpleado'
+
     # puede acceder a los datos del modelo mediante 'context_object_name' o 'object_list'
     # context_object_name = 'data'
     def get_queryset(self):

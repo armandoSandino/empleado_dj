@@ -36,7 +36,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                    {% for item in object_list %}
+                    <!-- listaEmpleado o object_list -->
+                    {% for item in listaEmpleado %}
                     <tr>
                         <td> {{item.id}}</td>
                         <td>{{item.first_name}}</td>
@@ -65,6 +66,40 @@
               </div>
               <!-- end table -->
         </div>
+
+        <!-- pagination -->
+        <div class="cell">
+            {% if is_paginated %} <!-- verificamos si existe paginacion habilitada-->
+            <nav aria-label="Pagination">
+                <ul class="pagination text-center">
+                    {% if page_obj.has_previous %} <!-- si  tiene elementos previos -->
+                        <li class="pagination-previous">
+                            <a href="?page={{page_obj.previous_page_number}}">Atras</a>
+                        </li>
+                    {% endif %}
+
+                    {% for item in paginator.page_range  %} <!-- recorrer las paginas disponibles-->
+                        
+                        {% ifequal item page_obj.number %} <!-- verificar cual es la pagina actual-->
+                            <li class="current"><span class="show-for-sr">Current page</span>{{item}}</li>
+                        {% else %}
+                            <li><a href="?page={{item}}" aria-label="Page {{item}}">{{item}}</a></li>
+                        {% endifequal %}
+                        
+
+                    {% endfor %}
+                  
+                    {% if page_obj.has_next %}
+                    <li class="pagination-next">
+                        <a href="?page={{page_obj.next_page_number}}">Siguiente</a>
+                    </li>
+                    {% endif %}
+                </ul>
+              </nav>
+            {% endif %}
+        </div>
+        <!-- end pagination-->
+
     </div>
 </div>
 

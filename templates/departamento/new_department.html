@@ -1,35 +1,53 @@
-<h2>
-    {{title}}
-</h2>
-<!-- 'form' es una varible que se creo internamnete para trabajar con nuestro CreateView.
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Department </title>
+    <link rel="stylesheet" href="{% static 'css/foundation.min.css' %}">
+</head>
+<body>
+    <h2>
+        {{title}}
+    </h2>
+    <!-- 'form' es una varible que se creo internamnete para trabajar con nuestro CreateView.
+    
+    Definira un formulario para trabajar con los campos definidos en el 'Form'. 
+    csrf_token proporciona seguridad al formulario -->
+    
+    <form method="POST" action="" name="formRegisterDepartment">
+        {% csrf_token %}
+        <h3>
+            Datos Empleado
+        </h3>
+        <p>
+            {{form.nombre}}
+        </p>
+        <p>
+          {{form.apellido}}  
+        </p>
+    
+        <h3>
+            Datos del departamento
+        </h3>
+        <p>
+            {{form.departamento}}
+        </p>
+        <p>
+            {{form.shortname}}
+        </p>
+    
+        <button type="submit" class="button success large" title=" agregar el departamento">
+            Guardar
+        </button>
+    </form>
 
-Definira un formulario para trabajar con los campos definidos en el 'Form'. 
-csrf_token proporciona seguridad al formulario -->
+</body>
+<footer>
+</footer>
+</html>
+ 
 
-<form method="POST" action="" name="formRegisterDepartment">
-    {% csrf_token %}
-    <h3>
-        Datos Empleado
-    </h3>
-    <p>
-        {{form.nombre}}
-    </p>
-    <p>
-      {{form.apellido}}  
-    </p>
-
-    <h3>
-        Datos del departamento
-    </h3>
-    <p>
-        {{form.departamento}}
-    </p>
-    <p>
-        {{form.shortname}}
-    </p>
-
-    <button type="submit" title=" agregar el departamento">
-        Guardar
-    </button>
-</form>
 

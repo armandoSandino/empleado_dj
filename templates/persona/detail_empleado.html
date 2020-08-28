@@ -1,5 +1,12 @@
-<!-- title es una varible que definimos en la vista mediante get_context_data -->
+{% extends 'includes/base.html' %}
+
+{% block content %}
+
+{% include 'includes/header.html' %}
+<!-- title es una varible que definimos en la vista mediante get_context_data 
 <h2> {{title}} </h2>
+-->
+
 <!-- Con 'object' puedo mostrar el registro 
     que internamente recupero  mi DetailView.
     {{object}}
@@ -8,36 +15,37 @@
     {{empleado}}
 -->
 <style>
-.card {
-    padding: 1em;
-    margin-top: 10px;
-    border-radius: 10px 10px;
-    border: 1px solid black;
-    background: green;
-    box-shadow: inherit 30px 30px;
-    color: white;
-    font-size: 16px;
-    font-style: italic;
-    transition: all 1s;
-    
-}
+
 .title {
     font-size: 18px;
     color: black;
 }
 </style>
-<div class="card">
 
-    <p class="title">Nombre</p>
-<p> {{empleado.first_name}} </p> 
+<br>
 
-<p class="title">Apellido</p>
-<p>{{object.last_name}}</p>
-
-<p class="title">Departamento</p>
-<p> {{object.departamento}}</p> 
-
-<p class="title">Habilidades</p>
-<p> {{empleado.habilidades}}</p>
-
+<div class="grid-container">
+    <div class="callout success">
+  
+        <h5 style="text-align: center;">{{title}}</h5>
+    
+      <div class="">
+        <p class="title">Nombre</p>
+    <p> {{empleado.first_name}} </p> 
+    
+    <p class="title">Apellido</p>
+    <p>{{object.last_name}}</p>
+    
+    <p class="title">Departamento</p>
+    <p> {{object.departamento}}</p> 
+    
+    <p class="title">Habilidades</p>
+    <p> {{object.habilidades}}</p>
+    
+    </div>
+      <a class="button success large expanded" style="text-align: center;" href="{% url 'persona_app:all-employe' %}">Empleados</a>
+    </div>
+        
 </div>
+{% endblock content %}
+

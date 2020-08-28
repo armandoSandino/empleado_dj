@@ -54,6 +54,6 @@ DATABASES = {
 
 STATIC_URL = '/static/'
 
-# Definir ruta para archivos estaticos
+# Definir ruta para archivos estaticos, mi directorio se llamara 'static' ubicado en la raiz
 
 STATICFILES_DIRS = [BASE_DIR.child('static')]

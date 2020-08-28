@@ -1,5 +1,6 @@
 from .base import *
 
+
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -52,3 +53,7 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Definir ruta para archivos estaticos
+
+STATICFILES_DIRS = [BASE_DIR.child('static')]

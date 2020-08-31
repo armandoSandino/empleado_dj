@@ -202,7 +202,7 @@ class EmpleadoUpdateView(UpdateView):
     # Definir campos a trabajar
     fields = ['first_name','last_name','job', 'departamento', 'habilidades']
     # Definir url de redireccion 
-    success_url = reverse_lazy('persona_app:success-employe')
+    success_url = reverse_lazy('persona_app:empleados-admin')
 
     # Definir variables extras a pasar al template
     def get_context_data(self, **kwargs):

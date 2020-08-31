@@ -57,3 +57,8 @@ STATIC_URL = '/static/'
 # Definir ruta para archivos estaticos, mi directorio se llamara 'static' ubicado en la raiz
 
 STATICFILES_DIRS = [BASE_DIR.child('static')]
+
+# Definir la ruta base para nuestros archivos multimedia
+MEDIA_URL = '/media/'
+# Definir la carpeta donde almacenamos los archivos multimedia
+MEDIA_ROOT = BASE_DIR.child('media')

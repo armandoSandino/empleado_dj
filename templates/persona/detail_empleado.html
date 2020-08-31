@@ -61,10 +61,17 @@
         <p class="title">Departamento</p>
         <p> {{object.departamento}}</p> 
         
-        <p class="title">Habilidades</p>
-
-        <p> {{empleado.habilidades}}</p>
+        <p class="title" style="background-color: cyan">Habilidades</p>
+        <ul class="vertical menu">
+            {% for item in empleado.habilidades.all %}
+              <li >
+                {{item.habilidad}}
+              </li>
+            {% endfor %}
+        </ul>
         
+        <br>
+
         </div>
           <a class="button success large expanded" style="text-align: center;" href="{% url 'persona_app:all-employe' %}">Empleados</a>
         </div>

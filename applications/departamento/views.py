@@ -7,6 +7,8 @@ from .forms import NewDepartamentoForm
 from applications.persona.models import Empleado
 from .models import Departamento
 
+from django.views.generic import ListView
+
 class NewRegisterDepartmentView(FormView):
     # Definir tamplate
     template_name = 'departamento/new_department.html'
@@ -43,3 +45,34 @@ class NewRegisterDepartmentView(FormView):
             departamento=depart
         )
         return super(NewRegisterDepartmentView, self).form_valid(form)
+
+
+
+class ListAllDepartment(ListView):
+    """ Listar todo  """
+    template_name = 'departamento/list_all.html'
+    
+    # Definir variable que nos servira para acceder a la lista de empleados resultante
+    # puede acceder a los datos del modelo mediante 'context_object_name' o 'object_list'
+    # context_object_name = 'data'
+    context_object_name = 'listDepartment'
+
+    # Agregar paginacion
+    # cuando se agrega paginacion genera implicitamente un objeto 'page_obj' y un 'paginator'
+    paginate_by=4
+    ordering = 'name'
+
+    # Nos permite enviar variables extras al template, campos que no estan en nuestro modelo
+    def get_context_data(self, **kwargs):
+        context = super(ListAllDepartment, self).get_context_data(**kwargs)
+        context['titulo'] = 'Todos los departamentos'
+
+        return context
+
+    def get_queryset(self):
+        # obtener valores pasados en un form asegurado con 'csrf_token'
+        search_term = self.request.GET.get('termino','')
+         # __icontains busca la existencia de una cadena en otra, como funcionaria un 'like'
+        return Departamento.objects.filter(
+            name__icontains = search_term
+        )

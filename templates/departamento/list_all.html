@@ -1,0 +1,123 @@
+
+{% extends 'includes/base.html' %}
+
+{% block title %}
+Departamentos
+{% endblock title %}
+
+{% block content %}
+
+{% include 'includes/header.html' %}
+
+<!-- main -->
+<div class="grid-container">
+    <div class="grid-x grid-margin-x">  <!-- main row -->
+        <div class="cell">
+            <h2>{{titulo}}</h2>
+        </div>
+
+        <form class="cell grid-x grid-margin-x" method="GET" action="" id="formSearch" name="formSearch">
+            {% csrf_token %}
+            <div class="cell large-8">
+                <input type="text" class="" name="termino" id="termino" placeholder="Ingrese el termino" >
+            </div>
+            <div class="cell large-4">
+                <button type="submit" class="button success" title="buscar departamento">
+                    Buscar
+                </button >
+            </div>
+        </form>
+
+        <!--table -->
+        <div class="cell">
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                ID
+                            </th>
+                            <th>
+                                Name   
+                            </th>
+                            <th>
+                                Short name
+                            </th>
+                            <th>
+                                Anulate
+                            </th>
+                            <th>
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- listDepartment o object_list -->
+                        {% for item in object_list %}
+                            <tr>
+                                <td>
+                                    {{ item.id }}
+                                </td>
+                                <td> {{item.name}} </td>
+                                <td> {{item.short_name }} </td>
+                                <td>{{item.anulate }}</td>
+                                <td>
+                                    <div class="grid-x grid-margin-x">
+                                        <div class="cell large-4">
+                                            <a class="button success" href="{% url 'persona_app:detail-employe' item.id %}">Ver</a>
+                                        </div>
+                                        <div class="cell large-4">
+                                            <a class="button primary" href="#">Editar</a>
+                                        </div>
+                                        <div class="cell large-4">
+                                            <a class="button primary" href="#"> Borrar</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- End table -->
+
+        <!-- pagination -->
+        <div class="cell">
+            {% if is_paginated %} <!-- verificamos si existe paginacion habilitada-->
+            <nav aria-label="Pagination">
+                <ul class="pagination text-center">
+                    {% if page_obj.has_previous %} <!-- si  tiene elementos previos -->
+                        <li class="pagination-previous">
+                            <a href="?page={{page_obj.previous_page_number}}">Atras</a>
+                        </li>
+                    {% endif %}
+
+                    {% for item in paginator.page_range  %} <!-- recorrer las paginas disponibles-->
+                        
+                        {% ifequal item page_obj.number %} <!-- verificar cual es la pagina actual-->
+                            <li class="current"><span class="show-for-sr">Current page</span>{{item}}</li>
+                        {% else %}
+                            <li><a href="?page={{item}}" aria-label="Page {{item}}">{{item}}</a></li>
+                        {% endifequal %}
+                        
+
+                    {% endfor %}
+                  
+                    {% if page_obj.has_next %}
+                    <li class="pagination-next">
+                        <a href="?page={{page_obj.next_page_number}}">Siguiente</a>
+                    </li>
+                    {% endif %}
+                </ul>
+              </nav>
+            {% endif %}
+        </div>
+        <!-- end pagination-->
+
+
+    </div> <!-- End main row-->
+
+</div>
+<!-- End main -->
+{% endblock content %}

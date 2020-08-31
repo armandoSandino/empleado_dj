@@ -15,7 +15,8 @@
             csrf_token proporciona seguridad al formulario -->
 
             <div class="cell">
-                <form class="grid-x grid-margin-x" method="POST" name="formAddEmployee"> 
+                <!-- Le indicamos a nuestro form que procesara archivos mediante el atributo enctype="multipart/form-data"-->
+                <form class="grid-x grid-margin-x" enctype="multipart/form-data" method="POST" name="formAddEmployee"> 
                     {% csrf_token %}
                     <!--{{ form.as_p}} -->
                     <div class="cell medium-6 large-6">
@@ -43,6 +44,13 @@
                     <div class="cell">
                         <label> Skills 
                             {{form.habilidades}}
+                        </label>
+                    </div>
+
+                    <div class="cell">
+                        <label>
+                            Foto
+                            {{form.avatar}}
                         </label>
                     </div>
 

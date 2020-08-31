@@ -13,6 +13,8 @@ from  django.views.generic import (
 # models
 from .models import Empleado
 from django.http import HttpResponseRedirect
+#Importar formulario personalizado
+from .forms import EmpleadoForm
 
 class InitView(TemplateView):
     """ Pagina de inicio """
@@ -166,8 +168,11 @@ class EmpleadoCreateView(CreateView):
     # Pude indicar que se trabaje con todos los campos del modelo, asi
     # fields = (__all__)
     # Puede indicar determinados compos del modelo con los que trabajar
-    fields = ['first_name','last_name','job', 'departamento', 'habilidades', 'avatar']
+    #fields = ['first_name','last_name','job', 'departamento', 'habilidades', 'avatar']
     # fields = ('__all__')
+
+    # Definir formulario personalizado a utilizar
+    form_class = EmpleadoForm
 
     # Definir la ruta de rediccion cuando el registro se agrego correctamente, con '.' se cargara la misma pagina
     # success_url = '/success-add-employe'

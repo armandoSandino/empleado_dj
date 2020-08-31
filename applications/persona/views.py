@@ -249,7 +249,7 @@ class EmpleadoDeteleView(DeleteView):
         self.object = self.get_object()
         # success_url = self.get_success_url()
         # Ruta de redireccionamiento
-        success_url = reverse_lazy('persona_app:success-employe')
+        success_url = reverse_lazy('persona_app:empleados-admin')
         # Borrar el registro
         self.object.delete()
         return HttpResponseRedirect(success_url)

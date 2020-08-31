@@ -40,7 +40,22 @@ class ListAllEmplados(ListView):
         return Empleado.objects.filter(
             full_name__icontains = palabra_clave
         )
-    
+
+
+class ListaEmpladosAdmin(ListView):
+    template_name =  'persona/lista_empleados.html'
+    # Agregar paginacion
+    # cuando se agrega paginacion genera implicitamente un objeto 'page_obj' y un 'paginator'
+    paginate_by = 10
+    # Ordenar resultados
+    ordering = 'first_name'
+    # Definir el modelo
+    model = Empleado
+
+    # Definir variable que nos servira para acceder a la lista de empleados resultante
+    context_object_name = 'listaEmpleado'
+
+
 class  ListByAreaEmpleado(ListView):
     """ Listar todos los empleados de un area de la empresa """
     

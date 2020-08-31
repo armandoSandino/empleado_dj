@@ -15,6 +15,7 @@ urlpatterns = [
     # Esta ruta es equivalente a la posterior
     # path('lista-by-area/<termino>/', views.ListByAreaEmpleado.as_view())
     path('lista-by-area/<str:termino>/', views.ListByAreaEmpleado.as_view(), name='all-employee-by-area'),
+    path('lista-empleados-admin/', views.ListaEmpladosAdmin.as_view(), name='empleados-admin'),
     
     # Implementando DetailView el 'pk' es importante aqui
     path('ver-empleado/<pk>/', 

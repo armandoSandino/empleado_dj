@@ -18,6 +18,7 @@
         <li> <a href="{% url 'persona_app:all-employe' %}">Listar</a></li>
         <li> <a href="{% url 'department_app:all-department' %}">Departamentos </a></li>
         <li><a href="{% url 'persona_app:empleados-admin' %}">Administrar</a></li</li>
+        <li> <a href="{% url 'department_app:new-depart' %}"> Nuevo Departamento </a></li>
 
       </ul>
     </div>
@@ -25,7 +26,9 @@
       <ul class="menu">
         <!--<li><input type="search" placeholder="Search"></li>-->
         <li>
-          <a class="button" href="{% url 'persona_app:add-employee' %}">Registrar nuevo</a>
+          <a class="button" href="{% url 'persona_app:add-employee' %}">
+            Registrar nuevo
+          </a>
         </li>
       </ul>
     </div>

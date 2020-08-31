@@ -1,53 +1,70 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Department </title>
-    <link rel="stylesheet" href="{% static 'css/foundation.min.css' %}">
-</head>
-<body>
-    <h2>
-        {{title}}
-    </h2>
-    <!-- 'form' es una varible que se creo internamnete para trabajar con nuestro CreateView.
-    
-    Definira un formulario para trabajar con los campos definidos en el 'Form'. 
-    csrf_token proporciona seguridad al formulario -->
-    
-    <form method="POST" action="" name="formRegisterDepartment">
-        {% csrf_token %}
-        <h3>
-            Datos Empleado
-        </h3>
-        <p>
-            {{form.nombre}}
-        </p>
-        <p>
-          {{form.apellido}}  
-        </p>
-    
-        <h3>
-            Datos del departamento
-        </h3>
-        <p>
-            {{form.departamento}}
-        </p>
-        <p>
-            {{form.shortname}}
-        </p>
-    
-        <button type="submit" class="button success large" title=" agregar el departamento">
-            Guardar
-        </button>
-    </form>
+{% extends 'includes/base.html' %}
 
-</body>
-<footer>
-</footer>
-</html>
+{% block title %}
+    Registrar departamento
+{% endblock title %}
+
+{% block content %}
+    {% include 'includes/header.html' %}
+    <div class="grid-container">
+        <div class="grid-x grid-margin-x">
+            <br>
+            <h2 class="cell">
+                {{title}}
+            </h2>
+
+            <!-- 'form' es una varible que se creo internamnete para trabajar con nuestro CreateView.
+            
+            Definira un formulario para trabajar con los campos definidos en el 'Form'. 
+            csrf_token proporciona seguridad al formulario -->
+    
+            <form class="cell callout grid-x grid-margin-x " method="POST" action="" name="formRegisterDepartment">
+                {% csrf_token %}
+                <h5 class="cell">
+                    Datos empleado
+                </h5>
+                <div class="medium-6 cell">
+                    <label> Nombres:
+                        {{form.nombre}}
+                    </label>
+                </div>
+                <div class="medium-6 cell">
+                    <label> Apellidos:
+                        {{form.apellido}}
+                    </label>
+                </div>
+
+                <h5 class="cell">
+                    Datos del departamento
+                </h5>
+
+                <div class="cell medium-6">
+                    <label>
+                        Departamento
+                        {{form.departamento}}
+                    </label>
+                </div>
+
+                <div class="cell medium-6">
+                    <label>
+                        Codigo corto:
+                        {{form.shortname}}
+                    </label>
+                </div>
+
+                <div class="cell">
+                    <button type="submit" class="button success large" title=" agregar el departamento">
+                        Guardar
+                    </button>
+                </div>
+                
+            </form>
+
+        </div> <!--End grid-->
+    </div>
+
+
+{% endblock content %}
  
 
 

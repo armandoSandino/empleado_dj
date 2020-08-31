@@ -15,8 +15,9 @@ class NewRegisterDepartmentView(FormView):
     # Definir el formulario a implementar
     form_class = NewDepartamentoForm
     # Definir ruta de redireccionamiento
-    success_url = '/'
-
+    # success_url = '/'
+    success_url = reverse_lazy('department_app:all-department')
+    
 
     def get_context_data(self, **kwargs):
         context = super(NewRegisterDepartmentView, self).get_context_data(**kwargs)

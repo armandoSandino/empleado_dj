@@ -1,13 +1,71 @@
-<h2>
-    {{title_page}}
-</h2>
-<!-- 'form' es una varible que se creo internamnete para trabajar con nuestro UpdateView.
- Definira un formulario para trabajar con los campos definidos en el 'fields' de la vista. 
-csrf_token proporciona seguridad al formulario -->
+{% extends 'includes/base.html' %}
 
+{% block title %}
+    Editar empleado
+{% endblock title %}
 
-<form method="POST" action="" name="formUpdateEmployee">
-    {% csrf_token %}
-    {{ form.as_p}}
-    <button type="submit"> Actualizar </button>
-</form >
+{% block content %}
+    {% include 'includes/header.html' %}
+
+    <div class="grid-container">    
+        <div class="grid-x grid-margin-x">
+            <div class="cell">
+                <h3>
+                    {{title_page}}
+                </h3>
+            </div>
+
+            <div class="cell">
+                <!-- 'form' es una varible que se creo internamnete para trabajar con nuestro UpdateView.
+                Definira un formulario para trabajar con los campos definidos en el 'fields' de la vista. 
+                csrf_token proporciona seguridad al formulario -->
+                <class class="grid-x grid-margin-x" method="POST" action="" name="formUpdateEmployee">
+                    {% csrf_token %}
+                    <!-- {{ form.as_p}} -->
+                    <div class="cell medium-6 large-6">
+                        <label>Name
+                          {{ form.first_name }}
+                        </label>
+                    </div>
+                    <div class="cell medium-6 large-6">
+                        <label>Last name
+                          {{ form.last_name }}
+                        </label>
+                    </div>
+
+                    <div class="cell medium-6 large-6">
+                        <label> Full name
+                            {{form.full_name}}
+                        </label>
+                    </div>
+
+                    <div class="cell medium-6 large-6">
+                        <label> Job
+                            {{form.job}}
+                        </label>
+                    </div>
+
+                    <div class="cell">
+                        <label> Department
+                            {{form.departamento}}
+                        </label>
+                    </div>
+
+                    <div class="cell">
+                        <label> Skills 
+                            {{form.habilidades}}
+                        </label>
+                    </div>
+                    <div class="cell medium-6 large-6">
+                        <button class="button success large" type="submit">
+                            Actualizar
+                        </button >
+                    </div>
+                    
+                </form>
+            </div>
+
+        </div> <!-- End grid -->
+    </div>
+
+{% endblock content %}

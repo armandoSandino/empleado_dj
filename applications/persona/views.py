@@ -165,13 +165,13 @@ class EmpleadoCreateView(CreateView):
     # Definir campos de nuestro modelo que queremos trabajar
     # Pude indicar que se trabaje con todos los campos del modelo, asi
     # fields = (__all__)
-    # Pude indicar determinados compos del modelo con los que trabajar
+    # Puede indicar determinados compos del modelo con los que trabajar
     fields = ['first_name','last_name','job', 'departamento', 'habilidades']
     # fields = ('__all__')
 
     # Definir la ruta de rediccion cuando el registro se agrego correctamente, con '.' se cargara la misma pagina
     # success_url = '/success-add-employe'
-    success_url = reverse_lazy('persona_app:success-employe')
+    success_url = reverse_lazy('persona_app:empleados-admin')
 
     # Definir variables extras a pasar al template
     def get_context_data(self, **kwargs):

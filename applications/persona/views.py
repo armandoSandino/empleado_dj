@@ -43,14 +43,24 @@ class ListAllEmplados(ListView):
     
 class  ListByAreaEmpleado(ListView):
     """ Listar todos los empleados de un area de la empresa """
-    template_name = 'persona/list_all.html' 
+    
+    # Definir template
+    template_name = 'persona/list_by_area.html' 
+    # Definir lista de datos a manipular desde la vista
+    context_object_name = 'listEmployee'
+
+    def get_context_data(self, **kwargs):
+
+        context = super(ListByAreaEmpleado, self).get_context_data(**kwargs)
+        context['title'] = 'Empleados en el area de ' + self.kwargs['termino'] 
+        return context
+
     # filtrar empleado por departamento
     """
     queryset = Empleado.objects.filter(
         departamento__short_name ='AC'
     )
     """
-
     def get_queryset(self):
         # mediante 'self.kwargs['parametro']' podemos recibir parametros pasados por url a una ruta
         term = self.kwargs['termino']

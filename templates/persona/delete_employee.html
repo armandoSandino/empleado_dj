@@ -1,0 +1,28 @@
+{% extends 'includes/base.html' %}
+
+{% block title %}
+    Borrar empleado
+{% endblock title %}
+
+{% block content %}
+    {% include 'includes/header.html' %}
+
+    <div class="grid-container">
+        <br>
+        <div class="grid-x grid-margin-x">
+            <!-- csrf_token proporciona seguridad al formulario -->
+            <p class="cell" style="color: blue; font-size: 18px">
+                Estas por borrar el empleado "{{ object.full_name}}"
+            </p>
+            <div class="callout cell">
+                <form method="POST" action="" name="confirmDeleteEmployee" autocomplete="off">
+                    {% csrf_token %}
+                    <h5> ¿Esta seguro que desea borrar el empleado?</h5>
+                    <button type="submit" class="button success large">Confirmar </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,19 @@
+<h1> Crear prueba</h1>
+<!-- form - Es una variable por defecto de django para manejar los datos de un modelo -->
+<!-- csrf_token asegura el form-->
+<style>
+.caja {
+    padding: 0.5em;
+    color: white;
+    border: 0.1em solid white;
+    background: black;
+    border-radius: 8px 8px;
+} 
+</style>
+<form method="POST" action="" autocomplete="off">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" name="bt_save" id="bt_save" title="Guardar registro">
+        Guardar
+    </button>
+</form>

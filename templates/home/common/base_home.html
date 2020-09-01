@@ -1,0 +1,28 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="{% static 'css/foundation.min.css' %}">
+    
+    <title>
+        {% block titulo %}
+
+        {% endblock titulo %}
+    </title>
+</head>
+<body>
+    {% block cabecera %}
+    
+    {% endblock cabecera %}
+
+    {% block cuerpo %}
+
+    {% endblock cuerpo %}
+</body>
+    {% block pies %}
+    
+    {% endblock pies %}
+</html>

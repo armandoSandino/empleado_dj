@@ -1,0 +1,68 @@
+{% extends 'includes/base.html' %}
+
+{% block title %}
+    Registrar empleado
+{% endblock %}
+
+{% block content %}
+    {% include 'includes/header.html' %}
+
+    <div class="grid-container">
+        <div class="grid-x grid-margin-x">
+            <h2 class="cell">{{title}}</h2>
+            <!-- 'form' es una varible que se creo internamnete para trabajar con nuestro CreateView.
+            Definira un formulario para trabajar con los campos definidos en el 'fields' de la vista. 
+            csrf_token proporciona seguridad al formulario -->
+
+            <div class="cell">
+                <!-- Le indicamos a nuestro form que procesara archivos mediante el atributo enctype="multipart/form-data"-->
+                <form class="grid-x grid-margin-x" enctype="multipart/form-data" method="POST" name="formAddEmployee"> 
+                    {% csrf_token %}
+                    <!--{{ form.as_p}} -->
+                    <div class="cell medium-6 large-6">
+                        <label>Name
+                          {{ form.first_name }}
+                        </label>
+                    </div>
+                    <div class="cell medium-6 large-6">
+                        <label>Last name
+                          {{ form.last_name }}
+                        </label>
+                    </div>
+                    <div class="cell large">
+                        <label> Job
+                            {{form.job}}
+                        </label>
+                    </div>
+
+                    <div class="cell">
+                        <label> Department
+                            {{form.departamento}}
+                        </label>
+                    </div>
+
+                    <div class="cell">
+                        <label> Skills 
+                            {{form.habilidades}}
+                        </label>
+                    </div>
+
+                    <div class="cell">
+                        <label>
+                            Foto
+                            {{form.avatar}}
+                        </label>
+                    </div>
+
+                    <div class="cell">
+                        <button type="submit"  class="button success large"> Registrar </button>
+                    </div>
+                    
+                </form> 
+            </div> <!-- End cell form -->
+
+        </div> <!-- End grid -->
+    </div>
+
+{% endblock content %}
+

@@ -1,0 +1,117 @@
+
+{% extends 'includes/base.html' %}
+
+{% block title %}
+    Lista empleados por departamento
+{%  endblock title %}
+
+{% block content %}
+
+{% include 'includes/header.html' %}
+
+<div class="grid-container"> 
+    <div class="grid-x">
+        <div class="cell">
+            <br>
+            <h3> {{title}} </h3>
+            <br>
+        </div>
+        
+        <!--<form class="cell grid-x grid-margin-x" method="GET" action="" id="formSearch" name="formSearch">
+            {% csrf_token %}
+            <div class="cell large-7">
+                <input type="text" class="" name="termino" id="termino" placeholder="Ingrese el termino" >
+            </div>
+            <div class="cell large-2">
+                <button type="submit" class="button success" title="buscar empleado">
+                    Buscar
+                </button >
+            </div>
+        </form>-->
+
+        <div class="cell">
+            <!--table -->
+            <div class="table-scroll">
+            <table >
+                <thead>
+                  <tr>
+                    <th width="200">ID</th>
+                    <th>First name</th>
+                    <th width="150">Last name</th>
+                    <th width="150">Full name</th>
+                    <th> Job </th>
+                    <th> Department </th>
+                    <th> Action </th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <!-- listEmployee o object_list -->
+                    {% for item in listEmployee %}
+                    <tr>
+                        <td> {{item.id}}</td>
+                        <td>{{item.first_name}}</td>
+                        <td>{{item.last_name}}</td>
+                        <td>{{item.full_name}}</td>
+                        <td>{{item.job}}</td>
+                        <td>{{item.departamento}}</td>
+                        <td>
+                            <div class="grid-x grid-margin-x">
+                                <div class="cell auto">
+                                    <a class="button success" href="{% url 'persona_app:detail-employe' item.id %}">Ver</a>
+                                </div>
+                                <div class="cell auto">
+                                    <a class="button primary" href="#">Editar</a>
+                                </div>
+                                <div class="cell auto">
+                                    <a class="button primary" href="#"> Borrar</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+              </table >
+              </div>
+              <!-- end table -->
+        </div>
+
+        <!-- pagination -->
+        <div class="cell">
+            {% if is_paginated %} <!-- verificamos si existe paginacion habilitada-->
+            <nav aria-label="Pagination">
+                <ul class="pagination text-center">
+                    {% if page_obj.has_previous %} <!-- si  tiene elementos previos -->
+                        <li class="pagination-previous">
+                            <a href="?page={{page_obj.previous_page_number}}">Atras</a>
+                        </li>
+                    {% endif %}
+
+                    {% for item in paginator.page_range  %} <!-- recorrer las paginas disponibles-->
+                        
+                        {% ifequal item page_obj.number %} <!-- verificar cual es la pagina actual-->
+                            <li class="current"><span class="show-for-sr">Current page</span>{{item}}</li>
+                        {% else %}
+                            <li><a href="?page={{item}}" aria-label="Page {{item}}">{{item}}</a></li>
+                        {% endifequal %}
+                        
+
+                    {% endfor %}
+                  
+                    {% if page_obj.has_next %}
+                    <li class="pagination-next">
+                        <a href="?page={{page_obj.next_page_number}}">Siguiente</a>
+                    </li>
+                    {% endif %}
+                </ul>
+              </nav>
+            {% endif %}
+        </div>
+        <!-- end pagination-->
+
+    </div>
+</div>
+
+
+{% endblock content %}
+

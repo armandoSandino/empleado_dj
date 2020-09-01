@@ -1,0 +1,89 @@
+
+
+{% extends 'includes/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% include 'includes/header.html' %}
+<!-- title es una varible que definimos en la vista mediante get_context_data 
+<h2> {{title}} </h2>
+-->
+
+<!-- Con 'object' puedo mostrar el registro 
+    que internamente recupero  mi DetailView.
+    {{object}}
+    Podemos acceder tambien especificando en nombre del Modelo con su primer caracter el miniscula
+    ej. Mi modelo es Empleado entonces seria empleado 
+    {{empleado}}
+-->
+<style>
+
+.title {
+    font-size: 18px;
+    color: black;
+}
+</style>
+
+<br>
+
+<div class="grid-container">
+  <div class="grid-x grid-margin-x align-center">
+      <div class="cell large-6 card" style="width: 500px;">
+
+        <div class="card-divider">
+          <!-- si un campo  es de tipo 'choices' puedes acceder a su valor mediante get_nombrecampo_display -->
+          {{empleado.get_job_display }}
+        </div>
+        
+        {% if empleado.avatar %}
+          <img src="{{ empleado.avatar.url }}">
+        {% else %}
+          <img src="{% static 'img/vue.png' %}">  
+        {% endif %}
+          
+        <div class="card-section">
+          <h4>{{ empleado.full_name }}</h4>
+
+          <!-- description employee -->
+          <div class="callout success">
+  
+            <h5 style="text-align: center;">{{title}}</h5>
+        
+          <div class="">
+            <p class="title">Nombre</p>
+        <p> {{empleado.first_name}} </p> 
+        
+        <p class="title">Apellido</p>
+        <p>{{object.last_name}}</p>
+        
+        <p class="title">Departamento</p>
+        <p> {{object.departamento}}</p> 
+        
+        <p class="title" style="background-color: cyan">Habilidades</p>
+        <ul class="vertical menu">
+            {% for item in empleado.habilidades.all %}
+              <li >
+                {{item.habilidad}}
+              </li>
+            {% endfor %}
+        </ul>
+        
+        <br>
+
+        </div>
+          <a class="button success large expanded" style="text-align: center;" href="{% url 'persona_app:all-employe' %}">Empleados</a>
+        </div>
+        <!-- End description employee -->
+
+
+
+        </div> <!--End section card-->
+      </div> <!-- End card -->
+  </div> <!-- End grid-->
+
+        
+</div>
+{% endblock content %}
+

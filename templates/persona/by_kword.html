@@ -1,0 +1,51 @@
+<h2>Buscar empleado por palabra clave</h2>
+<style>
+.form {
+    border: 2px solid black;
+    padding: 1em;
+}
+.form .caja {
+    box-shadow: inherit black 3px 3px;
+    color: black;
+    background-color: greenyellow;
+    padding: 0.5em;
+    border-radius: 5px 5px;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+}
+.form .buscar {
+    background-color: black;
+    width: auto;
+    height: 50px;
+    font-size: 18px;
+    font-style: italic;
+    cursor: pointer;
+    color: white;
+    transition: all 2s;    
+}
+</style>
+
+<form name="form" method="GET" action="" autocomplete="on" class="form">
+    <!-- Para evitar que cualquiera acceda y realice peticiones al servidor 
+        mediante el form, necesita agregar una llave de acceso/token mediante {% csrf_token %} -->
+        {% csrf_token %}
+    <input type="text" 
+    class="caja" 
+    name="termino"
+    id="termino"
+    placeholder="Ingrese el termino" 
+    title="Debe ingresar el termino de busqueda" required >
+
+    <input type="submit" class="caja buscar" id="send" name="bt_search" value="Buscar" title="Buscar ahora">
+</form>
+
+
+
+<ul>
+    {% for item in me_data %}
+    <li>
+        {{ item }}
+    </li>
+    {% endfor %}
+</ul>

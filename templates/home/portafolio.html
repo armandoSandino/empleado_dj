@@ -1,0 +1,45 @@
+{% extends 'home/common/base_home.html' %} <!-- indicara que esta plantilla hereda de una plantilla base-->
+{% load static %} <!-- cargar archivos estaticos-->
+
+{% block titulo %}<!-- sobre escribir los bloques definidos en la plantilla base-->
+    Portafolio
+{% endblock titulo %}
+
+{% block cabecera %}
+    {% include 'home/common/header.html'  %}<!-- incluir una plantilla -->
+{% endblock cabecera %}
+
+{% block cuerpo %}
+<div  class="grid-container">
+    <h1>
+        Portafolio de servicios
+    </h1>
+</div>
+{% endblock cuerpo %}
+
+{% block pies %}
+    {%  include 'home/common/footer.html' %}
+{% endblock %}
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Portafolio</title>
+    <link rel="stylesheet" href="{% static 'css/foundation.min.css' %}">
+
+</head>
+
+{% include 'home/common/header.html' %}
+
+<body>
+    
+</body>
+
+{% include 'home/common/footer.html' %}
+
+</html>
+-->

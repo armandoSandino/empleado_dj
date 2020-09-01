@@ -1,0 +1,35 @@
+<div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium">
+    <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
+    <div class="title-bar-title">Menu</div>
+  </div>
+  
+  <div class="top-bar" id="responsive-menu">
+    <div class="top-bar-left">
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li class="menu-text">Empleados</li>
+        <!--<li class="has-submenu">
+          <a href="#0">Departamento</a>
+          <ul class="submenu menu vertical" data-submenu>
+            <li><a href="#0">One</a></li>
+            <li><a href="#0">Two</a></li>
+            <li><a href="#0">Three</a></li>
+          </ul>
+        </li>-->
+        <li> <a href="{% url 'persona_app:all-employe' %}">Listar</a></li>
+        <li> <a href="{% url 'department_app:all-department' %}">Departamentos </a></li>
+        <li><a href="{% url 'persona_app:empleados-admin' %}">Administrar</a></li</li>
+        <li> <a href="{% url 'department_app:new-depart' %}"> Nuevo Departamento </a></li>
+
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu">
+        <!--<li><input type="search" placeholder="Search"></li>-->
+        <li>
+          <a class="button" href="{% url 'persona_app:add-employee' %}">
+            Registrar nuevo
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
